@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acf966a692ef2545a41be13b8b58a33, type: 3}
+  m_Name: CrossCut
+  m_EditorClassIdentifier: 
+  cardID: CrossCut
+  cardName: Cross Cut
+  description: Crossing attack
+  cardIcon: {fileID: 21300000, guid: 2a8bf227319d4421f91d9375e3ae59bf, type: 3}
+  cardType: 0
+  targetType: 2
+  baseCost: 2
+  baseValue: 7
+  burnOnPlay: 0

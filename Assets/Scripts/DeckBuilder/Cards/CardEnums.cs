@@ -4,8 +4,8 @@ namespace DeckBuilder.Cards
     public enum CardType
     {
         Attack,
+        Defend,
         Skill,
-        Power,
         Summon
     }
 
@@ -14,7 +14,6 @@ namespace DeckBuilder.Cards
         None,
         SingleEnemy,
         AllEnemies,
-        Self,
         SingleAlly,
         AllAllies
     }

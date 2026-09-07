@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DeckBuilder.Cards;
+using CharacterSystem;
 
 namespace PlayerSystem
 {
