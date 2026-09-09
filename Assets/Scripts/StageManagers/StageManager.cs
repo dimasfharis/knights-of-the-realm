@@ -1,9 +1,11 @@
 using PlayerSystem;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace StageManagers
 {
-    public class StageManager
+    public class StageManager : MonoBehaviour
     {
         public PlayerData GenerateEnemyDataForStage(int stage)
         {

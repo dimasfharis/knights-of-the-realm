@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: HeavySmash
   m_EditorClassIdentifier: 
   cardID: HeavySmash
-  cardName: Heavy Smash
+  cardName: 3
+  level: 1
   description: Swing the weapon to enemy barricade
   cardIcon: {fileID: 21300000, guid: 114d4aa7bb14433489b942bb28ff6183, type: 3}
   cardType: 0

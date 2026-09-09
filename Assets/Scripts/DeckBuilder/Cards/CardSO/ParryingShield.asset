@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ParryingShield
   m_EditorClassIdentifier: 
   cardID: ParryingShield
-  cardName: Parrying Shield
+  cardName: 7
+  level: 1
   description: Dodge the enemy's attack and stance to defend
   cardIcon: {fileID: 21300000, guid: 68f9e990182e8491b9c0f3dc88cd0158, type: 3}
   cardType: 1

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: HiltStrike
   m_EditorClassIdentifier: 
   cardID: HiltStrike
-  cardName: Hilt Strike
+  cardName: 4
+  level: 1
   description: Hit enemy's weak point
   cardIcon: {fileID: 21300000, guid: 0779ad3feec52124e97114bcbb12ef13, type: 3}
   cardType: 0

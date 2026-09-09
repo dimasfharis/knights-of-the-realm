@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: InnerFocus
   m_EditorClassIdentifier: 
   cardID: InnerFocus
-  cardName: Inner Focus
+  cardName: 5
+  level: 1
   description: Taking breath to return the energy (+1 energy, draw +1 card)
   cardIcon: {fileID: 21300000, guid: c706f86f6fd02084f9a14727d08b844d, type: 3}
   cardType: 2

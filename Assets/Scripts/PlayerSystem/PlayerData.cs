@@ -13,17 +13,17 @@ namespace PlayerSystem
     {
         // Permanent Character Roster
         public List<CharacterData> Roster = new List<CharacterData>();
-        public int RosterMaxAmount = 4;
+        private int RosterMaxAmount = 4;
 
         // Permanent Master Deck
         public List<CardData> MasterDeck = new List<CardData>();
         public List<CardData> AvailableCards = new List<CardData>();
-        public int MasterDeckMaxAmount = 10;
-        public int AvailableCardsMaxAmount = 12;
+        private int MasterDeckMaxAmount = 10;
+        private int AvailableCardsMaxAmount = 12;
 
         // Stats
-        public int MaxEnergy = 3;
-        public int CurrentStage = 1;
+        private int MaxEnergy = 3;
+        private int CurrentStage = 1;
 
         #region Initialization & Reset
 
@@ -123,6 +123,20 @@ namespace PlayerSystem
             // do upgrade logic
 
             return true;
+        }
+
+        #endregion
+
+        #region Public API
+
+        public int GetCurrentStage()
+        {
+            return CurrentStage;
+        }
+
+        public void IncreaseStage()
+        {
+            CurrentStage++;
         }
 
         #endregion

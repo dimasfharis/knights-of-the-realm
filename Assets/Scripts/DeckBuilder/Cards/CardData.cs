@@ -9,7 +9,6 @@ namespace DeckBuilder.Cards
         [Header("Identity & Visuals")]
         [SerializeField] private string cardID;
         [SerializeField] private CardName cardName;
-        [SerializeField] private int cost;
         [SerializeField] private int level;
         [TextArea(2, 4)]
         [SerializeField] private string description;
@@ -17,7 +16,6 @@ namespace DeckBuilder.Cards
 
         public string CardID => cardID;
         public CardName CardName => cardName;
-        public int Cost => cost;
         public int Level => level;
         public string Description => description;
         public Sprite CardIcon => cardIcon;

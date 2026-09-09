@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: CrossCut
   m_EditorClassIdentifier: 
   cardID: CrossCut
-  cardName: Cross Cut
+  cardName: 2
+  level: 1
   description: Crossing attack
   cardIcon: {fileID: 21300000, guid: 2a8bf227319d4421f91d9375e3ae59bf, type: 3}
   cardType: 0

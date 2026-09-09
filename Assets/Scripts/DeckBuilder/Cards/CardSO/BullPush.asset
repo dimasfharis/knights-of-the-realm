@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BullPush
   m_EditorClassIdentifier: 
   cardID: BullPush
-  cardName: Bull Push
+  cardName: 1
+  level: 1
   description: Hit enemy strongly
   cardIcon: {fileID: 21300000, guid: c48d0173f2d2c40679bc236de8551a69, type: 3}
   cardType: 0

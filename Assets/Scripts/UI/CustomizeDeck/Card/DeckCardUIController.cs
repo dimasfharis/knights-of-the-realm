@@ -20,16 +20,20 @@ namespace UI.CustomizeDeck.Card
 
         public CardData CardData { get; private set; }
         private Action<CardData> onClickAdd;
-        private Action<CardData> onClickRemove;
+        private Action<CardData, Transform> onClickRemove;
         private Action<CardData> onClickMove;
 
         #region Public Methods
 
-        public void Setup(CardData cardData, Action<CardData> onClickAddCallback, Action<CardData> onClickRemoveCallback, Action<CardData> onClickMoveCallback)
+        public void Setup(
+            CardData cardData,
+            Action<CardData, Transform> onClickRemoveCallback,
+            Action<CardData> onClickAddCallback = null,
+            Action<CardData> onClickMoveCallback = null)
         {
             CardData = cardData;
-            onClickAdd = onClickAddCallback;
             onClickRemove = onClickRemoveCallback;
+            onClickAdd = onClickAddCallback;
             onClickMove = onClickMoveCallback;
 
             if (iconImage != null && cardData.CardIcon != null) iconImage.sprite = cardData.CardIcon;
@@ -38,22 +42,25 @@ namespace UI.CustomizeDeck.Card
             if (levelText != null) levelText.text = cardData.Level.ToString();
             if (descriptionText != null) descriptionText.text = cardData.Description;
 
+            if (removeButton != null)
+            {
+                removeButton.onClick.RemoveAllListeners();
+                removeButton.onClick.AddListener(() => onClickRemove?.Invoke(CardData, transform.parent.parent));
+                removeButton.onClick.AddListener(() => Debug.Log($"Remove button clicked for card: {CardData.CardName}"));
+            }
+
             if (addButton != null)
             {
                 addButton.onClick.RemoveAllListeners();
                 addButton.onClick.AddListener(() => onClickAdd?.Invoke(CardData));
-            }
-
-            if (removeButton != null)
-            {
-                removeButton.onClick.RemoveAllListeners();
-                removeButton.onClick.AddListener(() => onClickRemove?.Invoke(CardData));
+                addButton.onClick.AddListener(() => Debug.Log($"Add button clicked for card: {CardData.CardName}"));
             }
 
             if (moveButton != null)
             {
                 moveButton.onClick.RemoveAllListeners();
                 moveButton.onClick.AddListener(() => onClickMove?.Invoke(CardData));
+                moveButton.onClick.AddListener(() => Debug.Log($"Move button clicked for card: {CardData.CardName}"));
             }
         }
 

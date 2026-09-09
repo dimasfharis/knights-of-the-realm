@@ -1,9 +1,10 @@
-using System.Collections.Generic;
 using CharacterSystem;
 using DeckBuilder.Cards;
 using PlayerSystem;
 using StageManagers;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameManagers
 {
@@ -20,7 +21,7 @@ namespace GameManagers
 
         [SerializeField] private PlayerData currentEnemyData;
 
-        [SerializeField] private StageManager stagemanager;
+        [SerializeField] private StageManager stageManager;
 
         // Database of all characters & cards
         [SerializeField] private List<CharacterData> characterDatabase = new List<CharacterData>();
@@ -33,10 +34,12 @@ namespace GameManagers
         // Read-Only properties access for external classes
         public PlayerData PlayerData => playerData;
         public PlayerData CurrentEnemyData => currentEnemyData;
-        public StageManager StageManager => stagemanager;
-        public int CurrentStageIndex => playerData != null ? playerData.CurrentStage : 1;
+        public StageManager StageManager => stageManager;
+        public int CurrentStageIndex => playerData != null ? playerData.GetCurrentStage() : 1;
         public IReadOnlyList<CharacterData> CharacterDatabase => characterDatabase;
         public IReadOnlyList<CardData> CardDatabase => cardDatabase;
+
+        private const string DEFAULT_BATTLE_SCENE_NAME = "BattleScene";
 
         #region Unity Lifecycle
 
@@ -52,6 +55,11 @@ namespace GameManagers
             DontDestroyOnLoad(gameObject);
         }
 
+        private void Start()
+        {
+            //StartNewRun(playerData.Roster, playerData.MasterDeck);
+        }
+
         #endregion
 
         #region Game Run Flow Control
@@ -60,24 +68,25 @@ namespace GameManagers
         {
             playerData.InitializeNewRun(starterRoster, starterDeck);
             runHistoryList.Clear();
-
-            LoadCurrentStage();
         }
 
-        private void LoadCurrentStage()
+        // Prepares enemy data for the current stage via StageManager and transition to Battle Scene
+        public void LoadCurrentStage(string sceneName = DEFAULT_BATTLE_SCENE_NAME)
         {
-            if (stagemanager == null)
+            if (stageManager == null)
             {
-                Debug.LogError("[GameManager] StageManager reference is not assigned");
-                return;
+                Debug.LogWarning("[GameManager] StageManager reference is not assigned");
+                stageManager = FindFirstObjectByType<StageManager>();
             }
 
-            // Generate pre-defined enemy PlayerData for current stage
-            currentEnemyData = stagemanager.GenerateEnemyDataForStage(playerData.CurrentStage);
+            if (stageManager != null)
+            {
+                // Generate pre-defined enemy PlayerData for current stage
+                currentEnemyData = stageManager.GenerateEnemyDataForStage(playerData.GetCurrentStage());
+            }
 
             // Trigger battle scene initialization
-            // stageManager.StartStageBattle(playerData, currentEnemyData)
-            // ....
+            SceneManager.LoadScene(sceneName);
         }
 
         // Callback called by BattleManager when a stage is successfully completed
@@ -90,7 +99,7 @@ namespace GameManagers
             }
 
             // Progress to next stage
-            playerData.CurrentStage++;
+            playerData.IncreaseStage();
 
             // Notify StageUI or transition system
             // ....

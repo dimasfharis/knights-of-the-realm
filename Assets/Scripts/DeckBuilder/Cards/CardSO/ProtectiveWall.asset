@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ProtectiveWall
   m_EditorClassIdentifier: 
   cardID: ProtectiveWall
-  cardName: Protective Wall
+  cardName: 8
+  level: 1
   description: Create barricade of walls
   cardIcon: {fileID: 21300000, guid: 68f9e990182e8491b9c0f3dc88cd0158, type: 3}
   cardType: 1
