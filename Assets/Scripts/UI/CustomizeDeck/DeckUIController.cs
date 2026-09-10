@@ -18,6 +18,7 @@ namespace UI.CustomizeDeck
 
         [SerializeField] private GameObject availableCardPrefab;
         [SerializeField] private GameObject masterDeckCardPrefab;
+
         [SerializeField] private TMP_Text nextStageText;
 
         [SerializeField] private Button nextBattleButton;

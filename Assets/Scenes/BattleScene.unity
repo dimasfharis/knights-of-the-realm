@@ -164,7 +164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25864c54c579f8f47a1193d77ef336fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCharacterContainer: {fileID: 1807329270}
+  enemyCharacterContainer: {fileID: 1674527798}
   handContainer: {fileID: 1326507382}
+  battleCharacterPrefab: {fileID: 5260077795637157739, guid: 912ed87dbedf1624d9d5b9872cce5fb9, type: 3}
   battleCardPrefab: {fileID: 6762389678102541434, guid: f53d8c058c79b3741b07e226b6483f62, type: 3}
   stageStatusGO: {fileID: 535569132}
 --- !u!1 &224432086

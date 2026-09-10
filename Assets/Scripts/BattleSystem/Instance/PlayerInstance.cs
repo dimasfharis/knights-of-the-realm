@@ -10,6 +10,10 @@ namespace BattleSystem.Instance
     /// </summary>
     public class PlayerInstance
     {
+        // Runtime character instance
+        private List<CharacterInstance> characterInstances = new List<CharacterInstance>();
+        private int characterInstancesMaxAmount = 4;
+
         // Runtime card instance
         private List<CardInstance> cardInstances = new List<CardInstance>();
         private int cardInstancesMaxAmount = 10;
@@ -26,7 +30,7 @@ namespace BattleSystem.Instance
             currentStage = playerData != null ? playerData.GetCurrentStage() : 1;
 
             CloneCardInstancesFromMasterDeck(playerData);
-            // Clone character ....
+            CloneCharacterInstancesFromRoster(playerData);
         }
 
         #endregion
@@ -57,9 +61,38 @@ namespace BattleSystem.Instance
             }
         }
 
+        private void CloneCharacterInstancesFromRoster(PlayerData playerData)
+        {
+            if (playerData == null || playerData.Roster.Count <= 0)
+            {
+                Debug.LogWarning("PlayerData is null or Roster is empty. Cannot clone character instances.");
+                return;
+            }
+
+            foreach (var character in playerData.Roster)
+            {
+                CharacterInstance characterInstance = new CharacterInstance(character);
+
+                if (characterInstances.Count < characterInstancesMaxAmount)
+                {
+                    characterInstances.Add(characterInstance);
+                }
+                else
+                {
+                    Debug.LogWarning("Reached maximum character instances limit. Cannot add more characters.");
+                    break;
+                }
+            }
+        }
+
         #endregion
 
         #region Accessors
+
+        public List<CharacterInstance> GetCharacterInstances()
+        {
+            return characterInstances;
+        }
 
         public List<CardInstance> GetCardInstances()
         {
