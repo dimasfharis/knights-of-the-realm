@@ -39,7 +39,6 @@ namespace UI.BattleScene.Character
                     RectTransform rect = characterGO.transform.GetChild(0).GetComponent<RectTransform>();
                     if (rect != null)
                     {
-                        //rect.localPosition = Vector3.zero;
                         rect.localScale = Vector3.one;
                     }
                 }

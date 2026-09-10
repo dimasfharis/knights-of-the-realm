@@ -8,13 +8,14 @@ namespace BattleSystem
 {
     public class BattleCardModel
     {
+        public const int MAX_HAND_SIZE = 10;
         public const int TARGET_HAND_SIZE = 7;
 
         // 4 Main Piles
-        public List<CardInstance> DrawPile { get; private set; } = new();
-        public List<CardInstance> Hand { get; private set; } = new();
-        public List<CardInstance> DiscardPile { get; private set; } = new();
-        public List<CardInstance> BurnPile { get; private set; } = new();
+        public List<CardInstance> DrawPile { get; private set; } = new List<CardInstance>();
+        public List<CardInstance> Hand { get; private set; } = new List<CardInstance>();
+        public List<CardInstance> DiscardPile { get; private set; } = new List<CardInstance>();
+        public List<CardInstance> BurnPile { get; private set; } = new List<CardInstance>();
 
         public event Action<CardInstance> OnCardDrawn;
         public event Action<CardInstance> OnCardPlayed;
@@ -35,8 +36,14 @@ namespace BattleSystem
 
             foreach (var cardData in masterDeck)
             {
-                // make runtime instance from data template
-                DrawPile.Add(new CardInstance(cardData));
+                if (DrawPile.Count < MAX_HAND_SIZE)
+                {
+                    DrawPile.Add(new CardInstance(cardData));
+                }else
+                {
+                    Debug.LogWarning("Reached maximum card instances limit. Cannot add more cards.");
+                    break;
+                }
             }
 
             ShuffleDrawPile();

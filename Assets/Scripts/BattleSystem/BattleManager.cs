@@ -1,6 +1,10 @@
 using BattleSystem.Instance;
+using CommandSystem;
 using GameManagers;
 using UnityEngine;
+using System.Collections.Generic;
+using StateSystem;
+using StateSystem.States;
 
 namespace BattleSystem
 {
@@ -15,6 +19,10 @@ namespace BattleSystem
         public PlayerInstance PlayerInstance { get; private set; }
         public PlayerInstance EnemyInstance { get; private set; }
 
+        public List<Command> CommandQueue { get; private set; } = new List<Command>();
+
+        public IState currentState { get; private set; }
+
         #region Unity Lifecycle
 
         private void Awake()
@@ -27,18 +35,39 @@ namespace BattleSystem
 
             Instance = this;
 
-            InstanceInitialization();
+            ChangeState(new BattleStartState());
+        }
+
+        private void Start()
+        {
+            
+        }
+
+        private void Update()
+        {
+            currentState?.Tick(this);
         }
 
         #endregion
 
         #region Initialization
 
-        private void InstanceInitialization()
+        public void InstanceInitialization()
         {
             // Initialize player and enemy instances
             PlayerInstance = new PlayerInstance(GameManager.Instance.PlayerData);
             EnemyInstance = new PlayerInstance(GameManager.Instance.CurrentEnemyData);
+        }
+
+        #endregion
+
+        #region State Management
+
+        public void ChangeState(IState newState)
+        {
+            currentState?.OnExit(this);
+            currentState = newState;
+            currentState?.OnEnter(this);
         }
 
         #endregion

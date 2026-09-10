@@ -38,7 +38,6 @@ namespace UI.BattleScene.Card
             {
                 playButton.onClick.RemoveAllListeners();
                 playButton.onClick.AddListener(() => onClickPlay?.Invoke(CardInstance));
-                playButton.onClick.AddListener(() => Debug.Log($"Play button clicked for card: {CardInstance.CardName}"));
             }
         }
 

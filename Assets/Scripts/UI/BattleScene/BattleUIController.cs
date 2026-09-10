@@ -1,9 +1,13 @@
 using BattleSystem;
 using BattleSystem.Instance;
+using GameManagers;
+using StateSystem.States;
 using System;
+using TMPro;
 using UI.BattleScene.Card;
 using UI.BattleScene.Character;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI.BattleScene
 {
@@ -15,6 +19,12 @@ namespace UI.BattleScene
 
         [SerializeField] private GameObject battleCharacterPrefab;
         [SerializeField] private GameObject battleCardPrefab;
+
+        [SerializeField] private TMP_Text DrawPileAmountText;
+        [SerializeField] private TMP_Text DiscardPileAmountText;
+        [SerializeField] private TMP_Text EnergyAmountText;
+
+        [SerializeField] private Button EndTurnButton;
 
         [SerializeField] private Transform stageStatusGO;
 
@@ -31,14 +41,24 @@ namespace UI.BattleScene
                 enemyInstance = BattleManager.Instance.EnemyInstance;
             }
 
-            // Setup button listener
-            // ....
+            playerInstance.GetBattleCardModel().OnCardDrawn += OnCardDrawnUpdateUI;
+            playerInstance.GetBattleCardModel().OnCardPlayed += OnCardPlayedUpdateUI;
+            playerInstance.GetBattleCardModel().OnCardDiscarded += OnCardDiscardedUpdateUI;
+            playerInstance.GetBattleCardModel().OnHandCleared += OnHandClearedUpdateUI;
 
             if (stageStatusGO != null)
                 stageStatusGO.gameObject.SetActive(false);
 
             RefreshHandCardUI();
             RefreshBattleCharacterUI();
+        }
+
+        private void OnDestroy()
+        {
+            playerInstance.GetBattleCardModel().OnCardDrawn -= OnCardDrawnUpdateUI;
+            playerInstance.GetBattleCardModel().OnCardPlayed -= OnCardPlayedUpdateUI;
+            playerInstance.GetBattleCardModel().OnCardDiscarded -= OnCardDiscardedUpdateUI;
+            playerInstance.GetBattleCardModel().OnHandCleared -= OnHandClearedUpdateUI;
         }
 
         #endregion
@@ -55,7 +75,7 @@ namespace UI.BattleScene
             ClearContainer(handContainer);
 
             // Populate Cards in Hand
-            foreach (var card in playerInstance.GetCardInstances())
+            foreach (var card in playerInstance.GetHandCards())
             {
                 TryCreateBattleCardUI(card, handContainer, PlayCard);
             }
@@ -184,17 +204,64 @@ namespace UI.BattleScene
 
         #endregion
 
+        #region Card and Energy UI Rendering Logic
+
+        private void RefreshCardAndEnergyUI()
+        {
+            BattleCardModel battleCardModel = playerInstance.GetBattleCardModel();
+
+            DrawPileAmountText.text = battleCardModel != null ? battleCardModel.DrawPile.Count.ToString() : "?";
+            DiscardPileAmountText.text = battleCardModel != null ? battleCardModel.DiscardPile.Count.ToString().ToString() : "?";
+            EnergyAmountText.text = $"{playerInstance.GetCurrentEnergy()}/{playerInstance.GetMaxEnergy()}";
+        }
+
+        #endregion
+
         #region Card Interaction Logic
 
         // Play the card and remove it from hand
         private void PlayCard(CardInstance card)
         {
-            
+            if (BattleManager.Instance.currentState is not PlayerTurnInputState)
+            {
+                Debug.Log("Not be in turn input to select card");
+                return;
+            }
+
+            playerInstance.GetBattleCardModel().PlayCard(card);
         }
 
         private void SelectCharacter(CharacterInstance character)
         {
 
+        }
+
+        #endregion
+
+        #region Card Interaction Event Listener
+
+        private void OnCardDrawnUpdateUI(CardInstance cardInstance)
+        {
+            RefreshHandCardUI();
+            RefreshCardAndEnergyUI();
+        }
+
+        private void OnCardPlayedUpdateUI(CardInstance cardInstance)
+        {
+            RefreshHandCardUI();
+            RefreshCardAndEnergyUI();
+        }
+
+        private void OnCardDiscardedUpdateUI(CardInstance cardInstance)
+        {
+            RefreshHandCardUI();
+            RefreshCardAndEnergyUI();
+        }
+
+        private void OnHandClearedUpdateUI()
+        {
+            RefreshHandCardUI();
+            RefreshCardAndEnergyUI();
         }
 
         #endregion

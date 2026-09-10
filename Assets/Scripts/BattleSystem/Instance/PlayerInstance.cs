@@ -15,11 +15,12 @@ namespace BattleSystem.Instance
         private int characterInstancesMaxAmount = 4;
 
         // Runtime card instance
-        private List<CardInstance> cardInstances = new List<CardInstance>();
+        private BattleCardModel battleCardModel = new BattleCardModel();
         private int cardInstancesMaxAmount = 10;
 
         // Stats
         private int maxEnergy;
+        private int currentEnergy;
         private int currentStage;
 
         #region Constructor
@@ -27,9 +28,10 @@ namespace BattleSystem.Instance
         public PlayerInstance(PlayerData playerData)
         {
             maxEnergy = playerData != null ? playerData.GetMaxEnergy() : 3;
+            currentEnergy = maxEnergy;
             currentStage = playerData != null ? playerData.GetCurrentStage() : 1;
 
-            CloneCardInstancesFromMasterDeck(playerData);
+            CloneCardInstancesToBattleCardModel(playerData);
             CloneCharacterInstancesFromRoster(playerData);
         }
 
@@ -37,7 +39,7 @@ namespace BattleSystem.Instance
 
         #region Initialization
 
-        private void CloneCardInstancesFromMasterDeck(PlayerData playerData)
+        private void CloneCardInstancesToBattleCardModel(PlayerData playerData)
         {
             if (playerData == null || playerData.MasterDeck.Count <= 0)
             {
@@ -45,20 +47,7 @@ namespace BattleSystem.Instance
                 return;
             }
 
-            foreach (var card in playerData.MasterDeck)
-            {
-                CardInstance cardInstance = new CardInstance(card);
-
-                if (cardInstances.Count < cardInstancesMaxAmount)
-                {
-                    cardInstances.Add(cardInstance);
-                }
-                else
-                {
-                    Debug.LogWarning("Reached maximum card instances limit. Cannot add more cards.");
-                    break;
-                }
-            }
+            battleCardModel.InitializeBattleDeck(playerData.MasterDeck);
         }
 
         private void CloneCharacterInstancesFromRoster(PlayerData playerData)
@@ -89,14 +78,29 @@ namespace BattleSystem.Instance
 
         #region Accessors
 
+        public BattleCardModel GetBattleCardModel()
+        {
+            return battleCardModel;
+        }
+
         public List<CharacterInstance> GetCharacterInstances()
         {
             return characterInstances;
         }
 
-        public List<CardInstance> GetCardInstances()
+        public List<CardInstance> GetDrawPileCards()
         {
-            return cardInstances;
+            return battleCardModel.DrawPile;
+        }
+
+        public List<CardInstance> GetHandCards()
+        {
+            return battleCardModel.Hand;
+        }
+
+        public List<CardInstance> GetDiscardPileCards()
+        {
+            return battleCardModel.DiscardPile;
         }
 
         public int GetCardInstancesMaxAmount()
@@ -107,6 +111,11 @@ namespace BattleSystem.Instance
         public int GetMaxEnergy()
         {
             return maxEnergy;
+        }
+
+        public int GetCurrentEnergy()
+        {
+            return currentEnergy;
         }
 
         public int GetCurrentStage()
