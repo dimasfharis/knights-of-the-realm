@@ -205,7 +205,7 @@ MonoBehaviour:
   masterDeckCardPrefab: {fileID: 6762389678102541434, guid: 9745dd5d3929b4d4ab6c0028fe0c13e2, type: 3}
   nextStageText: {fileID: 1741147914}
   nextBattleButton: {fileID: 1892117866}
-  RewardUIGO: {fileID: 535569132}
+  rewardUIGO: {fileID: 535569132}
 --- !u!1 &352905426
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +289,127 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 50}
   m_SizeDelta: {x: 820, y: -100}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &397081829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 397081830}
+  - component: {fileID: 397081831}
+  m_Layer: 0
+  m_Name: DataInitialization
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &397081830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397081829}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 971.1505, y: 551.1215, z: -6.528477}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &397081831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397081829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799e1ac1b9a3d8f479f22f08bf70f66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData:
+    Roster:
+    - {fileID: 11400000, guid: 2920e80fa585433469a1b7a4c2c4ba66, type: 2}
+    - {fileID: 11400000, guid: cdbb3dfebb1c4be44b495713279c669e, type: 2}
+    MasterDeck:
+    - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
+    - {fileID: 11400000, guid: 2d28bf2b324c83944a08121d0d951b8e, type: 2}
+    - {fileID: 11400000, guid: d95375ca44ec5894699c89aa4f4b105c, type: 2}
+    - {fileID: 11400000, guid: 526af07410c18c44cbd38367ab9aa3a0, type: 2}
+    - {fileID: 11400000, guid: 3286e517044ba4b47b580fe2a0d2336a, type: 2}
+    - {fileID: 11400000, guid: 0aad6c7829f5122459bc09b60d2a03d6, type: 2}
+    - {fileID: 11400000, guid: e26bef270480a174e9ddd0604662f9a3, type: 2}
+    - {fileID: 11400000, guid: 9ce969aaf9983db4585874b356182e9d, type: 2}
+    - {fileID: 11400000, guid: e5ad050d28c18b04c9c8b200550c14c1, type: 2}
+    - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
+    AvailableCards: []
+  enemyDataList:
+  - Roster:
+    - {fileID: 11400000, guid: 8fdae702e2f775f4f93e97dac435f051, type: 2}
+    MasterDeck:
+    - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
+    - {fileID: 11400000, guid: d95375ca44ec5894699c89aa4f4b105c, type: 2}
+    - {fileID: 11400000, guid: e26bef270480a174e9ddd0604662f9a3, type: 2}
+    - {fileID: 11400000, guid: 3286e517044ba4b47b580fe2a0d2336a, type: 2}
+    - {fileID: 11400000, guid: 9ce969aaf9983db4585874b356182e9d, type: 2}
+    - {fileID: 11400000, guid: e5ad050d28c18b04c9c8b200550c14c1, type: 2}
+    AvailableCards: []
+  - Roster:
+    - {fileID: 11400000, guid: 8afe7fcb7e426ac4f95afda9bb219a1f, type: 2}
+    MasterDeck:
+    - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
+    - {fileID: 11400000, guid: d95375ca44ec5894699c89aa4f4b105c, type: 2}
+    - {fileID: 11400000, guid: e26bef270480a174e9ddd0604662f9a3, type: 2}
+    - {fileID: 11400000, guid: 3286e517044ba4b47b580fe2a0d2336a, type: 2}
+    - {fileID: 11400000, guid: 9ce969aaf9983db4585874b356182e9d, type: 2}
+    - {fileID: 11400000, guid: e5ad050d28c18b04c9c8b200550c14c1, type: 2}
+    AvailableCards: []
+  - Roster:
+    - {fileID: 11400000, guid: 8fdae702e2f775f4f93e97dac435f051, type: 2}
+    - {fileID: 11400000, guid: 8fdae702e2f775f4f93e97dac435f051, type: 2}
+    MasterDeck:
+    - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
+    - {fileID: 11400000, guid: d95375ca44ec5894699c89aa4f4b105c, type: 2}
+    - {fileID: 11400000, guid: e26bef270480a174e9ddd0604662f9a3, type: 2}
+    - {fileID: 11400000, guid: 3286e517044ba4b47b580fe2a0d2336a, type: 2}
+    - {fileID: 11400000, guid: 9ce969aaf9983db4585874b356182e9d, type: 2}
+    - {fileID: 11400000, guid: e5ad050d28c18b04c9c8b200550c14c1, type: 2}
+    - {fileID: 11400000, guid: 2d28bf2b324c83944a08121d0d951b8e, type: 2}
+    - {fileID: 11400000, guid: 0aad6c7829f5122459bc09b60d2a03d6, type: 2}
+    AvailableCards: []
+  - Roster:
+    - {fileID: 11400000, guid: 8fdae702e2f775f4f93e97dac435f051, type: 2}
+    - {fileID: 11400000, guid: 8afe7fcb7e426ac4f95afda9bb219a1f, type: 2}
+    MasterDeck:
+    - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
+    - {fileID: 11400000, guid: d95375ca44ec5894699c89aa4f4b105c, type: 2}
+    - {fileID: 11400000, guid: e26bef270480a174e9ddd0604662f9a3, type: 2}
+    - {fileID: 11400000, guid: 3286e517044ba4b47b580fe2a0d2336a, type: 2}
+    - {fileID: 11400000, guid: 9ce969aaf9983db4585874b356182e9d, type: 2}
+    - {fileID: 11400000, guid: e5ad050d28c18b04c9c8b200550c14c1, type: 2}
+    - {fileID: 11400000, guid: 2d28bf2b324c83944a08121d0d951b8e, type: 2}
+    - {fileID: 11400000, guid: 0aad6c7829f5122459bc09b60d2a03d6, type: 2}
+    AvailableCards: []
+  - Roster:
+    - {fileID: 11400000, guid: 8afe7fcb7e426ac4f95afda9bb219a1f, type: 2}
+    - {fileID: 11400000, guid: 8afe7fcb7e426ac4f95afda9bb219a1f, type: 2}
+    MasterDeck:
+    - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
+    - {fileID: 11400000, guid: d95375ca44ec5894699c89aa4f4b105c, type: 2}
+    - {fileID: 11400000, guid: e26bef270480a174e9ddd0604662f9a3, type: 2}
+    - {fileID: 11400000, guid: 3286e517044ba4b47b580fe2a0d2336a, type: 2}
+    - {fileID: 11400000, guid: 9ce969aaf9983db4585874b356182e9d, type: 2}
+    - {fileID: 11400000, guid: e5ad050d28c18b04c9c8b200550c14c1, type: 2}
+    - {fileID: 11400000, guid: 2d28bf2b324c83944a08121d0d951b8e, type: 2}
+    - {fileID: 11400000, guid: 0aad6c7829f5122459bc09b60d2a03d6, type: 2}
+    - {fileID: 11400000, guid: 526af07410c18c44cbd38367ab9aa3a0, type: 2}
+    AvailableCards: []
 --- !u!1 &448264371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2586,26 +2707,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c191dc4b8050f87488f3d9df3bcd53ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    Roster: []
-    MasterDeck:
-    - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
-    - {fileID: 11400000, guid: 2d28bf2b324c83944a08121d0d951b8e, type: 2}
-    - {fileID: 11400000, guid: d95375ca44ec5894699c89aa4f4b105c, type: 2}
-    - {fileID: 11400000, guid: 526af07410c18c44cbd38367ab9aa3a0, type: 2}
-    - {fileID: 11400000, guid: 3286e517044ba4b47b580fe2a0d2336a, type: 2}
-    - {fileID: 11400000, guid: 0aad6c7829f5122459bc09b60d2a03d6, type: 2}
-    - {fileID: 11400000, guid: e26bef270480a174e9ddd0604662f9a3, type: 2}
-    - {fileID: 11400000, guid: 9ce969aaf9983db4585874b356182e9d, type: 2}
-    - {fileID: 11400000, guid: e5ad050d28c18b04c9c8b200550c14c1, type: 2}
-    - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
-    AvailableCards: []
-  currentEnemyData:
-    Roster: []
-    MasterDeck: []
-    AvailableCards: []
+  dataInitialization: {fileID: 397081831}
   stageManager: {fileID: 766331927}
-  characterDatabase: []
+  characterDatabase:
+  - {fileID: 11400000, guid: cdbb3dfebb1c4be44b495713279c669e, type: 2}
+  - {fileID: 11400000, guid: 8afe7fcb7e426ac4f95afda9bb219a1f, type: 2}
+  - {fileID: 11400000, guid: 8fdae702e2f775f4f93e97dac435f051, type: 2}
+  - {fileID: 11400000, guid: 2920e80fa585433469a1b7a4c2c4ba66, type: 2}
   cardDatabase:
   - {fileID: 11400000, guid: dfaa670a127ae404285fb6f385ca9e7c, type: 2}
   - {fileID: 11400000, guid: 2d28bf2b324c83944a08121d0d951b8e, type: 2}
@@ -3133,3 +3241,4 @@ SceneRoots:
   - {fileID: 1381355737}
   - {fileID: 1779406342}
   - {fileID: 766331928}
+  - {fileID: 397081830}

@@ -22,7 +22,7 @@ namespace UI.CustomizeDeck
 
         [SerializeField] private Button nextBattleButton;
 
-        [SerializeField] private Transform RewardUIGO;
+        [SerializeField] private Transform rewardUIGO;
 
         private PlayerData playerData;
 
@@ -42,8 +42,8 @@ namespace UI.CustomizeDeck
                 nextBattleButton.onClick.AddListener(OnNextBattleClicked);
             }
 
-            if (RewardUIGO != null)
-                RewardUIGO.gameObject.SetActive(false);
+            if (rewardUIGO != null)
+                rewardUIGO.gameObject.SetActive(false);
 
             RefreshUI();
         }
@@ -91,6 +91,7 @@ namespace UI.CustomizeDeck
             if (availableCardPrefab == null || masterDeckCardPrefab == null || container == null)
                 return false;
 
+            // Find an empty slot in the container and instantiate the card UI prefab there
             foreach (Transform child in container)
             {
                 if (child.childCount > 0)

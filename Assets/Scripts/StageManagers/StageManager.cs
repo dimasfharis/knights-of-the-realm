@@ -2,6 +2,7 @@ using PlayerSystem;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using GameManagers;
 
 namespace StageManagers
 {
@@ -9,8 +10,9 @@ namespace StageManagers
     {
         public PlayerData GenerateEnemyDataForStage(int stage)
         {
-            // placeholder
-            PlayerData enemyPlayerData = new PlayerData();
+            DataInitialization dataInitialization = GameManager.Instance.GetDataInitialization();
+
+            PlayerData enemyPlayerData = dataInitialization.GetEnemyDataForStage(stage);
 
             return enemyPlayerData;
         }

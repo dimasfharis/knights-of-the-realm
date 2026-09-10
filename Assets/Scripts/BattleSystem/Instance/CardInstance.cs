@@ -1,42 +1,51 @@
+using DeckBuilder.Cards;
 using System;
+using UnityEngine;
 
-namespace DeckBuilder.Cards
+namespace BattleSystem.Instance
 {
     public class CardInstance
     {
         // Identity & Blueprint
-        public string InstanceID { get; private set; }
         public CardData Data { get; private set; }
+        public string InstanceID { get; private set; }
+        public CardName CardName { get; private set; }
         public int Level { get; private set; }
+        public string Description { get; private set; }
+        public Sprite CardIcon { get; private set; }
+
 
         // Runtime battle attributes (can change within battle)
+        public CardType CardType { get; private set; }
+        public TargetType TargetType { get; private set; }
         public int CurrentCost { get; private set; }
-        public bool IsBurnOnPlay { get; set; }
+        public int CurrentValue { get { return GetCalculatedValue(); } }
+        public bool IsBurnOnPlay { get; private set; }
 
         // Constant Variable
         private const float BONUS_STATS_PER_LEVEL = 0.3f;
 
         #region Initialization
 
-        public CardInstance(CardData data, int level = 1)
+        public CardInstance(CardData data)
         {
             Data = data ?? throw new ArgumentNullException(nameof(data));
-            InstanceID = Guid.NewGuid().ToString(); // Unique ID per card in a battle
-            Level = level;
 
+            InstanceID = Guid.NewGuid().ToString(); // Unique ID per card in a battle
+            CardName = data.CardName;
+            Level = data.Level;
+            Description = data.Description;
+            CardIcon = data.CardIcon;
+
+            CardType = data.CardType;
+            TargetType = data.TargetType;
+            CurrentCost = data.BaseCost;
             IsBurnOnPlay = data.BurnOnPlay;
-            ResetCost();
         }
 
         #endregion
 
         #region Cost Modifiers
-
-        // Return cost to template default value
-        public void ResetCost()
-        {
-            CurrentCost = Data.BaseCost;
-        }
 
         // Change temporary cost
         public void ModifyCost(int amount)

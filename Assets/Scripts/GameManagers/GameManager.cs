@@ -3,6 +3,7 @@ using DeckBuilder.Cards;
 using PlayerSystem;
 using StageManagers;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,10 +18,10 @@ namespace GameManagers
     {
         public static GameManager Instance { get; private set; }
 
-        [SerializeField] private PlayerData playerData = new PlayerData();
+        private PlayerData playerData = new PlayerData();
+        private PlayerData currentEnemyData = new PlayerData();
 
-        [SerializeField] private PlayerData currentEnemyData;
-
+        [SerializeField] private DataInitialization dataInitialization;
         [SerializeField] private StageManager stageManager;
 
         // Database of all characters & cards
@@ -53,11 +54,8 @@ namespace GameManagers
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        }
 
-        private void Start()
-        {
-            //StartNewRun(playerData.Roster, playerData.MasterDeck);
+            StartNewRun(dataInitialization.GetPlayerData().Roster, dataInitialization.GetPlayerData().MasterDeck);
         }
 
         #endregion
@@ -118,12 +116,21 @@ namespace GameManagers
 
         public CharacterData GetCharacterFromDatabase(CharacterName characterName)
         {
-            return characterDatabase.Find(c => c != null && c.characterName == characterName);
+            return characterDatabase.Find(c => c != null && c.CharacterName == characterName);
         }
 
         public CardData GetCardFromDatabase(CardName cardName)
         {
             return cardDatabase.Find(c => c != null && c.CardName == cardName);
+        }
+
+        #endregion
+
+        #region Public Accessors
+
+        public DataInitialization GetDataInitialization()
+        {
+            return dataInitialization;
         }
 
         #endregion

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DeckBuilder.Cards
 {
-    [CreateAssetMenu(fileName = "NewCardData", menuName = "DeckBuilder/Cards/Card Data")]
+    [CreateAssetMenu(fileName = "CardData", menuName = "Scriptable Objects/Card Data")]
     public class CardData : ScriptableObject
     {
         // Identity & Visuals

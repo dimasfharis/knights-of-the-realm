@@ -23,7 +23,7 @@ namespace UI.CustomizeDeck.Card
         private Action<CardData, Transform> onClickRemove;
         private Action<CardData> onClickMove;
 
-        #region Public Methods
+        #region Setup and Initialization
 
         public void Setup(
             CardData cardData,

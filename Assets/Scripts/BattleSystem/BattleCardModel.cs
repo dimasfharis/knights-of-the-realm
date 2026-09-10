@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DeckBuilder.Cards;
+using BattleSystem.Instance;
 
-namespace BattleCardSystem
+namespace BattleSystem
 {
     public class BattleCardModel
     {
